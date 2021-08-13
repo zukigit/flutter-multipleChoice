@@ -8,6 +8,7 @@ class myHome extends StatefulWidget {
 }
 
 class _myHomeState extends State<myHome> {
+  bool tapA = false, tapB = false, tapC = false, tapD = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +20,9 @@ class _myHomeState extends State<myHome> {
             ),
             Center(
               child: FractionallySizedBox(
-                alignment: Alignment.center,
-                widthFactor: 0.98,
-                child: questionField()
-              ),
+                  alignment: Alignment.center,
+                  widthFactor: 0.98,
+                  child: questionField()),
             ),
             FractionallySizedBox(
               widthFactor: 0.98,
@@ -31,26 +31,50 @@ class _myHomeState extends State<myHome> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Container(
-                        height: 60,
-                        child: Text(
-                          "A.　",
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blue[800],
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            tapA ? tapA = false : tapA = true;
+                            tapC = false; tapB = false; tapD = false;
+                          });
+                        },
+                        child: Container(
+                          height: 60,
+                          child: Text(
+                            "A.",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                                left: BorderSide(width: 1, color: Colors.white),
+                                bottom:
+                                    BorderSide(width: 1, color: Colors.white)),
+                            color: tapA ? Colors.blueGrey : Colors.blue[800],
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        height: 60,
-                        child: Text(
-                          "B.  ",
-                          style: TextStyle(color: Colors.black87, fontSize: 15),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blueAccent,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            tapB ? tapB = false : tapB = true;
+                            tapA = false; tapC = false; tapD = false;
+                          });
+                        },
+                        child: Container(
+                          height: 60,
+                          child: Text(
+                            "B.",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                                left: BorderSide(width: 1, color: Colors.white),
+                                bottom:
+                                    BorderSide(width: 1, color: Colors.white)),
+                            color: tapB ? Colors.blueGrey : Colors.blue[800],
+                          ),
                         ),
                       ),
                     ),
@@ -65,26 +89,50 @@ class _myHomeState extends State<myHome> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Container(
-                        height: 45,
-                        child: Text(
-                          "C.",
-                          style: TextStyle(color: Colors.black87),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blueAccent,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            tapC ? tapC = false : tapC = true;
+                            tapA = false; tapB = false; tapD = false;
+                          });
+                        },
+                        child: Container(
+                          height: 60,
+                          child: Text(
+                            "C.",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                                left: BorderSide(width: 1, color: Colors.white),
+                                bottom:
+                                    BorderSide(width: 1, color: Colors.white)),
+                            color: tapC ? Colors.blueGrey : Colors.blue[800],
+                          ),
                         ),
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        height: 45,
-                        child: Text(
-                          "D.",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blue[800],
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            tapD ? tapD = false : tapD = true;
+                            tapA = false; tapB = false; tapC = false;
+                          });
+                        },
+                        child: Container(
+                          height: 60,
+                          child: Text(
+                            "D.",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border(
+                                left: BorderSide(width: 1, color: Colors.white),
+                                bottom:
+                                    BorderSide(width: 1, color: Colors.white)),
+                            color: tapD ? Colors.blueGrey : Colors.blue[800],
+                          ),
                         ),
                       ),
                     ),
@@ -92,59 +140,17 @@ class _myHomeState extends State<myHome> {
                 ),
               ),
             ),
-            buttonSection(),
+            SizedBox(
+              height: 100,
+            ),
+            ElevatedButton(
+              child: Text("press me"),
+              onPressed: (){
+                print("A $tapA B $tapB C $tapC D $tapD");
+              },
+            )
           ],
         ));
-  }
-}
-
-class buttonSection extends StatelessWidget {
-  const buttonSection({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      widthFactor: 0.98,
-      child: Container(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-               ButtonTheme(
-                 height: 100,
-                 minWidth: 400,
-                 child: OutlinedButton(
-                   onPressed: (){},
-                   child: Text("A"),
-                   style: OutlinedButton.styleFrom(
-                     backgroundColor: Colors.amber,
-                   )
-                 ),
-               ),
-               TextButton(
-                 onPressed: (){},
-                  child: Text("B")
-               ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                 onPressed: (){},
-                  child: Text("C")
-               ),
-               TextButton(
-                 onPressed: (){},
-                  child: Text("D")
-               ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }
 
